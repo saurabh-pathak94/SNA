@@ -7,9 +7,11 @@ plotRoc <- function(originalGraph, sampledGraph, minConnectionsToAdd, maxConnect
 
 
 	actual_edgeList <- get.edgelist(originalGraph)
+  print ("act",actual_edgeList)
 	nodeCount <- max(actual_edgeList) + 1
+  #print ("nodeCount",nodeCount)
 	potentialConnections <- nodeCount * (nodeCount - 1) / 2
-
+  #print(potentialConnections)
 
 	source("simList.R")
 	source("predictLinks.R")
@@ -58,8 +60,11 @@ plotRoc <- function(originalGraph, sampledGraph, minConnectionsToAdd, maxConnect
 
 	maxi <- min(maxConnectionsToAdd, potentialConnections, nrow(list))
 	numOutRows <- (maxi - minConnectionsToAdd) / step + 1
-	rocPoints <- mat.or.vec(numOutRows, 2)
-
+  print ("numOutRows",numOutRows)
+	#print ("maxi",maxi)
+  rocPoints <- mat.or.vec(numOutRows, 2)
+  print ("here")
+  print(nrow(rocPoints))
 	i <- minConnectionsToAdd
 	i_out <- 1
 
@@ -81,6 +86,6 @@ plotRoc <- function(originalGraph, sampledGraph, minConnectionsToAdd, maxConnect
 
 	} 	# for (i in 1:potentialConnections)
 
-
+  print (rocPoints)
 	rocPoints
 }

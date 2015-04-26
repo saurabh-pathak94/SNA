@@ -30,8 +30,8 @@ glmSimList <- function(sampledGraph, predictions)
 			sim <- predictions[i]
 			
 
-			list[i, 1] <- row - 1	# node indexes are zero-based
-			list[i, 2] <- col - 1	# node indexes are zero-based
+			list[i, 1] <- row #- 1	# node indexes are zero-based
+			list[i, 2] <- col #- 1	# node indexes are zero-based
 			list[i, 3] <- sim
 
 			i <- i + 1

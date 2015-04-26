@@ -48,11 +48,12 @@ createTrainData <- function(sampledGraph)
 			sim_SD <- SD[row, col]
 			sim_SInLogW <- SInLogW[row, col]
 
-			list[i, 1] <- are.connected(sampledGraph, row - 1, col - 1)	# node indexes are zero-based
+			list[i, 1] <- are.connected(sampledGraph, row , col )	# node indexes are zero-based, add -1 to both row and col
 			
 			# these two columns are only for debugging
-			list[i, 2] <- row - 1	# node indexes are zero-based
-			list[i, 3] <- col - 1	# node indexes are zero-based
+			list[i, 2] <- row #- 1	# node indexes are zero-based
+     
+			list[i, 3] <- col #- 1	# node indexes are zero-based
 			
 			list[i, 4] <- sim_SJ
 			list[i, 5] <- sim_SD

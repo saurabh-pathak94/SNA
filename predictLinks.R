@@ -17,7 +17,10 @@ predictLinks <- function(graph, simList, numBestToTake, treshold)
 		node1 <- simList[i, 1]
 		node2 <- simList[i, 2]
 		sim <- simList[i, 3]
-
+    print (node1)
+    print (node2)
+    if(node2 == 35)
+      node2=34
 		if (sim < treshold) 		# give up
 			break
 

@@ -10,6 +10,7 @@ glmScore <- function(originalGraph, sampledGraph, minConnectionsToAdd, maxConnec
 	source("glmTrainAndPredict.R")
 	source("plotRoc.R")
 	source("glmSimList.R")
+  source("roc.R")
 	
 	
 	actual_edgeList <- get.edgelist(originalGraph)
@@ -20,10 +21,10 @@ glmScore <- function(originalGraph, sampledGraph, minConnectionsToAdd, maxConnec
 	
 	predictions <- glmTrainAndPredict(sampledGraph)
 	
-	
+	#print("predictions", predictions)
 	
 	list <- glmSimList(sampledGraph, predictions) 	# sort glm predictions by their strength
-	
+	#print (list)
 	
 	treshold <- 0
 	

@@ -13,7 +13,7 @@ roc <- function(actualGraph,
 	falsePositives <- 0
 	truePositives <- 0
 	falseNegatives <- 0
-	# trueNegatives <- 0
+	 trueNegatives <- 0
 
 	actual_rows <- nrow(actual_edgeList)
 	for (i in 1:actual_rows)

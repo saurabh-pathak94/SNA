@@ -109,14 +109,14 @@ if (removalMethod == 1)	# use randomly selected edges
   print(v2)
 	for (i in 1:length(v1))
 	{
-		a <- v1[i]-1 
-		b <- v2[i]-1 
+		a <- v1[i] 
+		b <- v2[i] 
     print (a)
     print (b)
-		#if (are.connected(SampledGraph, a, b)) 
-	#		{ print ("inside",a,b)
+		if (are.connected(SampledGraph, a, b)) 
+			{ #print ("inside",a,b)
       SampledGraph[a,b] <-NULL # delete.edges(SampledGraph, E(SampledGraph, P=c(a, b)))
-	#}
+	}
  }
 	EdgesDelGraph <- SampledGraph
 
@@ -136,22 +136,22 @@ source("glmScore.R")
 p1 <- plotRoc(OriginalGraph, EdgesDelGraph, 1, 45, 3, 1)	# Jaccard
 dev.set(4)
 head(p1)
-plot(p1,ylim=c(0,0.1),xlim=c(0,1))
+plot(p1,ylim=c(0,1),xlim=c(0,1))
 
-#p2 <- plotRoc(OriginalGraph, EdgesDelGraph, 1, 45, 3, 2)	# Dice
-#dev.set(5)
-#head(p2)
-#plot(p2,ylim=c(0,0.1),xlim=c(0,1))
+p2 <- plotRoc(OriginalGraph, EdgesDelGraph, 1, 45, 3, 2)	# Dice
+dev.set(5)
+head(p2)
+plot(p2,ylim=c(0,1),xlim=c(0,1))
 
-#p3 <- plotRoc(OriginalGraph, EdgesDelGraph, 1, 45, 3, 3)	# Inv log
-#dev.set(6)
-#head(p3)
-#plot(p3)
+p3 <- plotRoc(OriginalGraph, EdgesDelGraph, 1, 45, 3, 3)	# Inv log
+dev.set(6)
+head(p3)
+plot(p3,ylim=c(0,1),xlim=c(0,0.2))
 
-#p4 <- glmScore(OriginalGraph, EdgesDelGraph, 1, 40, 10)	# Logistic regression: combined Jaccard, Dice, Inv log
-#dev.set(7)
-#head(p4)
-#plot(p4)
+p4 <- glmScore(OriginalGraph, EdgesDelGraph, 1, 40, 10)	# Logistic regression: combined Jaccard, Dice, Inv log
+dev.set(7)
+head(p4)
+plot(p4,ylim=c(0,1),xlim=c(0,1))
 
 
 
