@@ -36,6 +36,7 @@ OriginalGraph <- read.graph("karate.gml", format = c("gml"))
 
 
 #cs <- leading.eigenvector.community.step(OriginalGraph)
+#V(OriginalGraph)$color <- ifelse(cs$membership==0, "lightblue", "green")
 
 #scale <- function(v, a, b) {
 #  v <- v-min(v) ; v <- v/max(v) ; v <- v * (b-a) ; v+a
@@ -43,7 +44,9 @@ OriginalGraph <- read.graph("karate.gml", format = c("gml"))
 
 #V(OriginalGraph)$size <- scale(abs(cs$eigenvector), 10, 20)
 #E(OriginalGraph)$color <- "grey"
-
+#E(g)[ V(g)[ color=="lightblue" ] %--% V(g)[ color=="green" ] ]$color <- "red"
+#dev.set(2)
+#tkplot(g, layout=layout.kamada.kawai, vertex.label.font=2)
 
 #plot the origial graph
 dev.set(2)
@@ -115,7 +118,8 @@ if (removalMethod == 1)	# use randomly selected edges
     print (b)
 		if (are.connected(SampledGraph, a, b)) 
 			{ #print ("inside",a,b)
-      SampledGraph[a,b] <-NULL # delete.edges(SampledGraph, E(SampledGraph, P=c(a, b)))
+      SampledGraph[a,b] <-NULL 
+      #delete.edges(SampledGraph, E(SampledGraph, P=c(a, b)))
 	}
  }
 	EdgesDelGraph <- SampledGraph
@@ -133,25 +137,29 @@ source("plotRoc.R")
 source("glmScore.R")
 
 
-p1 <- plotRoc(OriginalGraph, EdgesDelGraph, 1, 45, 3, 1)	# Jaccard
+p1 <- plotRoc(OriginalGraph, EdgesDelGraph, 1, 1001, 3, 1)	# Jaccard
 dev.set(4)
 head(p1)
-plot(p1,ylim=c(0,1),xlim=c(0,1))
+plot(p1)
+#plot(p1,ylim=c(0,1),xlim=c(0,1))
 
-p2 <- plotRoc(OriginalGraph, EdgesDelGraph, 1, 45, 3, 2)	# Dice
+p2 <- plotRoc(OriginalGraph, EdgesDelGraph, 1, 1001, 3, 2)	# Dice
 dev.set(5)
 head(p2)
-plot(p2,ylim=c(0,1),xlim=c(0,1))
+plot(p2)
+#plot(p2,ylim=c(0,1),xlim=c(0,1))
 
-p3 <- plotRoc(OriginalGraph, EdgesDelGraph, 1, 45, 3, 3)	# Inv log
+p3 <- plotRoc(OriginalGraph, EdgesDelGraph, 1, 1001, 3, 3)	# Inv log
 dev.set(6)
 head(p3)
-plot(p3,ylim=c(0,1),xlim=c(0,0.2))
+plot(p3)
+#plot(p3,ylim=c(0,1),xlim=c(0,1))
 
-p4 <- glmScore(OriginalGraph, EdgesDelGraph, 1, 40, 10)	# Logistic regression: combined Jaccard, Dice, Inv log
+p4 <- glmScore(OriginalGraph, EdgesDelGraph, 1, 1001, 10)	# Logistic regression: combined Jaccard, Dice, Inv log
 dev.set(7)
 head(p4)
-plot(p4,ylim=c(0,1),xlim=c(0,1))
+plot(p4)
+#plot(p4,ylim=c(0,1),xlim=c(0,1))
 
 
 

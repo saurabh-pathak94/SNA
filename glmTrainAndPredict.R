@@ -25,8 +25,8 @@ glmTrainAndPredict <- function(sampledGraph)
 	in2 <- list[, 5]
 	in3 <- list[, 6]
 	
- trainedModel <- glm(formula = counts ~ in1 + in2 + in3, family = binomial(link = "logit"), na.action = na.pass)		# linear model
- #trainedModel <- glm(formula = counts ~ in1 * in2 * in3, family = binomial(link = "logit"), na.action = na.pass)	# enable nonlinear interactions
+ #trainedModel <- glm(formula = counts ~ in1 + in2 + in3, family = binomial(link = "logit"), na.action = na.pass)		# linear model
+ trainedModel <- glm(formula = counts ~ in1 * in2 * in3, family = binomial(link = "logit"), na.action = na.pass)	# enable nonlinear interactions
 
 
 	newdata1 <- data.frame(in1, in2, in3)

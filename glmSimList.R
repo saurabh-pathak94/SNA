@@ -12,10 +12,10 @@ glmSimList <- function(sampledGraph, predictions)
 	nodeCount <- max(actual_edgeList) + 1
 
 
-	rows <- nodeCount
-	cols <- nodeCount
+	rows <- nodeCount-1
+	cols <- nodeCount-1
 
-
+  
 	list <- mat.or.vec(rows * cols, 6)
 
 	i <- 1
